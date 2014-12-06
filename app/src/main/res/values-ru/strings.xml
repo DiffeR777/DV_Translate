@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DV_Translate</string>
+    <string name="about_text">"Это модуль для фреймворка Xposed (WSM Tools).\n Он переводит строки ресурсов приложений. \n Как использовать:\n 1) На карте памяти (SD-card) создать папку \\dv_translate\\application_name\n где application_name - полное название пакета приложения (например: com.android.settings) \n 2) положить туда файлы с переведенными строками \"strings.xml \" и массивами \"arrays.xml\". \n   Модуль попытается заменить строковые ресурсы при следующем запуске приложения.</string>
+    <string name="action_close">Закрыть</string>
+    <string name="action_softreboot">Перезагрузить оболочку</string>
+</resources>

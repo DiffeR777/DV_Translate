@@ -1,0 +1,9 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
+    <!--item android:id="@+id/action_clear" android:title="@string/action_clear"
+        android:orderInCategory="100" android:showAsAction="never" /-->
+    <item android:id="@+id/action_close" android:title="@string/action_close"
+        android:orderInCategory="200" android:showAsAction="never" />
+    <item android:id="@+id/action_softreboot" android:title="@string/action_softreboot"
+        android:orderInCategory="100" android:showAsAction="never" />
+</menu>

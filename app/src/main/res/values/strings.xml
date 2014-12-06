@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DV_Translate</string>
+    <string name="about_text">This is module for Xposed framework. \n It helps translate string values of applications. \n 1) create folder in SDcard \\dv_translate\\application_name\n application_name is exactly name of application package (example: com.android.settings) \n 2) put in it files with translated strings \"strings.xml\" and arrays \"arrays.xml\". \n  Module will try to replace string resources when application started. </string>
+    <string name="action_close">Close</string>
+    <string name="action_softreboot">Soft Reboot</string>
+</resources>
