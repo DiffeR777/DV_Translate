@@ -197,15 +197,17 @@ public class SampleAPK {
                 if (drheigth!=0) origin_rect.top=origin_rect.bottom+drheigth;
                 final Rect new_rect=origin_rect;
 
+                // Read your drawable from somewhere
                 try {
                    // XposedBridge.log("try replace drawable from " + drpath);
-
                     packageres.setReplacement(packagename,"drawable",drname,new XResources.DrawableLoader() {
                         @Override
                         public Drawable newDrawable(XResources res, int id) throws Throwable {
                             Drawable drawable;
                             drawable = Drawable.createFromPath(drpath);
                             drawable.setBounds(new_rect);
+                            //Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
+                            //drawable =  new BitmapDrawable(packageres,Bitmap.createScaledBitmap(bitmap, new_rect.width(), new_rect.height(), true));
                             return drawable;
                         }
                     });
