@@ -216,7 +216,7 @@ public class SampleAPK {
                     //XposedBridge.log(localThrowable1);
                 }
             }
-            XposedBridge.log("Drawables replaced for " + packagename);
+            //XposedBridge.log("Drawables replaced for " + packagename);
 
             //documentbuilder.reset();
         }

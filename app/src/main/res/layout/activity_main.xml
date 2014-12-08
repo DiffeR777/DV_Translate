@@ -12,5 +12,6 @@
         android:text="@string/about_text"
         android:id="@+id/textView"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentTop="true" />
+        android:layout_alignParentTop="true"
+        android:textSize="@dimen/MainTextSize" />
 </RelativeLayout>
