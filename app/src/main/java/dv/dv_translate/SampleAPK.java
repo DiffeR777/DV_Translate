@@ -2,10 +2,13 @@ package dv.dv_translate;
 
 import android.content.res.XModuleResources;
 import android.content.res.XResources;
+import android.graphics.Bitmap;
 import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Environment;
+import android.util.TypedValue;
 import android.widget.TextView;
 
 import org.w3c.dom.Document;
@@ -182,19 +185,22 @@ public class SampleAPK {
                 Uri uri = Uri.parse(appFolder + "/" + b.getTextContent());
                 final String drpath = uri.getPath();
                 final String drname= b.getAttributes().getNamedItem("name").getNodeValue();
-                String dwidth="0";
-                String dheigth = "0";
+
+                final int drheigth,drwidth;
+
                 Node drnode=(b.getAttributes().getNamedItem("width"));
-                if (drnode!=null) dwidth= drnode.getNodeValue();
+                if (drnode!=null) {
+                    drwidth= Integer.parseInt(drnode.getNodeValue());
+                } else drwidth=0;
+
                 drnode=(b.getAttributes().getNamedItem("heigth"));
-                if (drnode!=null) dheigth= drnode.getNodeValue();
-                int drheigth=Integer.valueOf(dheigth);
-                int drwidth=Integer.valueOf(dwidth);
+                if (drnode!=null){
+                    drheigth= Integer.parseInt(drnode.getNodeValue());
+                }else drheigth=0;
+
                 Drawable origindrawable =  packageres.getDrawable(packageres.getIdentifier(drname, "drawable",packagename));
                 Rect origin_rect=new Rect();
                 if (origindrawable!= null)  origin_rect = origindrawable.getBounds();
-                if (drwidth!=0) origin_rect.right=origin_rect.left+drwidth;
-                if (drheigth!=0) origin_rect.top=origin_rect.bottom+drheigth;
                 final Rect new_rect=origin_rect;
 
                 // Read your drawable from somewhere
@@ -205,9 +211,18 @@ public class SampleAPK {
                         public Drawable newDrawable(XResources res, int id) throws Throwable {
                             Drawable drawable;
                             drawable = Drawable.createFromPath(drpath);
-                            drawable.setBounds(new_rect);
-                            //Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
-                            //drawable =  new BitmapDrawable(packageres,Bitmap.createScaledBitmap(bitmap, new_rect.width(), new_rect.height(), true));
+                            Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
+                            if ((drwidth!=0)&&(drheigth!=0)){
+                                drawable.setBounds(0,0,drwidth,drheigth);
+                                drawable =  new BitmapDrawable(packageres,Bitmap.createScaledBitmap(bitmap, drwidth, drheigth, true));
+                            }
+                            else {
+                             if (new_rect.width()>0&&new_rect.height()>0){
+                                drawable.setBounds(new_rect);
+                                drawable =  new BitmapDrawable(packageres,Bitmap.createScaledBitmap(bitmap, new_rect.width(), new_rect.height(), true));
+                             }
+
+                            }
                             return drawable;
                         }
                     });
@@ -237,6 +252,99 @@ public class SampleAPK {
     public void ResizeTextEditPopup(){
         packageres.hookLayout("android.miui", "layout", "text_edit_action_popup_text", new EditPopupHook());
     }
+
+    public enum Dimension_ {
+        px ("px"),
+        dip("dip"),
+        sp("sp"),
+        pt("pt"),
+        in("in"),
+        mm("mm");
+
+        private final String name;
+
+        private Dimension_(String s) {
+            name = s;
+        }
+
+        public boolean equalsStr(String str2){
+            return (str2 != null) && name.equals(str2);
+        }
+
+        public String toString(){
+            return name;
+        }
+    }
+
+/*
+    public void ReplaceDimensions() throws ParserConfigurationException, IOException, SAXException {
+
+        */
+/*public enum Dimension {
+            //Pixels - Corresponds to actual pixels on the screen.
+            px(TypedValue.COMPLEX_UNIT_PX),
+
+            // dp или dip Density-independent Pixels - An abstract unit that is based on the physical density of the screen
+            dip(TypedValue.COMPLEX_UNIT_DIP),
+
+            //Scale-independent Pixels
+            sp(TypedValue.COMPLEX_UNIT_SP),
+
+            //Points - 1/72 of an inch based on the physical size of the screen.
+            pt(TypedValue.COMPLEX_UNIT_PT),
+
+            //Inches - Based on the physical size of the screen.
+            in(TypedValue.COMPLEX_UNIT_IN),
+
+            //Millimeters - Based on the physical size of the screen.
+            mm(TypedValue.COMPLEX_UNIT_MM);
+
+            private final int unitType;
+
+            Dimension(int unitType) {
+                this.unitType = unitType;
+            }
+
+            public XResources.DimensionReplacement valueOf(float value) {
+                return new XResources.DimensionReplacement(value, unitType);
+            };
+          *//*
+
+
+
+
+        File dimensFile = new File(appFolder + "/dimens.xml");
+
+        if (dimensFile.exists()) {
+            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+            DocumentBuilder documentbuilder = dbf.newDocumentBuilder();
+            Document document = documentbuilder.parse(dimensFile);
+
+            document.getDocumentElement().normalize();
+
+            NodeList a = document.getElementsByTagName("dimen");
+
+            for(int i = 0; i<a.getLength();i++)
+            {
+                Node b = a.item(i);
+
+
+                mFontSizePx = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, mFontSize,
+                        packageres.getDisplayMetrics());
+
+                try { packageres.setReplacement(
+                        packagename,
+                        "dimen",
+                        b.getAttributes().item(0).getNodeValue(),
+                        b.getTextContent());
+                } catch (Throwable localThrowable1) {
+                    XposedBridge.log("exception then try replace dimention: " + b.getAttributes().item(0).getNodeValue());
+                }
+            }
+            XposedBridge.log("Dimentions replaced for " + packagename);
+        }
+    }
+*/
 }
 
 class EditPopupHook extends XC_LayoutInflated {
@@ -248,7 +356,7 @@ class EditPopupHook extends XC_LayoutInflated {
         TextView txtEditPopup = (TextView) liparam.view;
 
         if (txtEditPopup != null) {
-            txtEditPopup.setTextSize(9);
+            txtEditPopup.setTextSize(TypedValue.COMPLEX_UNIT_SP,9);
             //XposedBridge.log("Text in Edit Popup set to 9.0sp size ("+txtEditPopup.getText()+")");
         }
     }
