@@ -3,17 +3,25 @@
     <plurals name="dirty_contacts_count">
         <item quantity="other">%d контактов</item>
         <item quantity="one">%d контакт</item>
+        <item quantity="two">%d контакта</item>
+        <item quantity="few">%d контакта</item>
     </plurals>
     <plurals name="dirty_mms_count">
         <item quantity="other">%d сообщений</item>
         <item quantity="one">%d сообщение</item>
+        <item quantity="two">%d сообщения</item>
+        <item quantity="few">%d сообщения</item>
     </plurals>
     <plurals name="dirty_note_count">
         <item quantity="other">%d заметок</item>
         <item quantity="one">%d заметка</item>
+        <item quantity="two">%d заметки</item>
+        <item quantity="few">%d заметки</item>
     </plurals>
     <plurals name="dirty_image_count">
         <item quantity="other">%d фотографий</item>
         <item quantity="one">%d фотография</item>
+        <item quantity="two">%d фотографии</item>
+        <item quantity="few">%d фотографии</item>
     </plurals>
 </resources>

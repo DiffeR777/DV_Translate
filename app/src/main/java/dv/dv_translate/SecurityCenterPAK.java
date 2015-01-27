@@ -1,14 +1,21 @@
 package dv.dv_translate;
 
+import android.widget.Button;
+
 import de.robv.android.xposed.callbacks.XC_InitPackageResources;
+import de.robv.android.xposed.callbacks.XC_LayoutInflated;
 
 /**
  * Created by Дмитрий on 23.11.2014.
  */
 public class SecurityCenterPAK extends SampleAPK {
-    protected SecurityCenterPAK(XC_InitPackageResources.InitPackageResourcesParam resparam, String module_path) {
-        super(resparam, module_path);
+    private XC_InitPackageResources.InitPackageResourcesParam resparam;
+
+    protected SecurityCenterPAK(XC_InitPackageResources.InitPackageResourcesParam Resparam, String module_path) {
+        super(Resparam, module_path);
+        this.resparam=Resparam;
     }
+
     @Override
     public  void ReplacePlurals() {
         if (!this.PluralsDisabled()) {
@@ -24,5 +31,18 @@ public class SecurityCenterPAK extends SampleAPK {
             this.TryReplacePlural("summary_app_update", R.plurals.summary_app_update);
             LogPluralsDone();
         }
+    }
+
+    @Override
+    public void CustomModuleActions() {
+        /*resparam.res.hookLayout("com.miui.securitycenter", "layout", "pm_activity_root_apply",
+            new XC_LayoutInflated() {
+            @Override
+            public void handleLayoutInflated(LayoutInflatedParam liparam) throws Throwable
+            {
+                liparam.view.findViewById(
+                        liparam.res.getIdentifier("accept", "id", "com.miui.securitycenter")).setEnabled(true);
+
+            }});*/
     }
 }

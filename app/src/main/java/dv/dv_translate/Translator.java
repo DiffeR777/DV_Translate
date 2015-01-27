@@ -5,17 +5,25 @@ package dv.dv_translate;
  ************************************************/
 import java.io.File;
 import java.util.Locale;
+
+import android.app.Activity;
 import android.app.backup.BackupManager;
 import android.content.res.Configuration;
+import android.os.Bundle;
 import android.os.Environment;
+import android.widget.Button;
 
 import de.robv.android.xposed.IXposedHookInitPackageResources;
+import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.IXposedHookZygoteInit;
+import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedBridge;
+import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_InitPackageResources;
+import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
 public class Translator implements IXposedHookZygoteInit,
-        IXposedHookInitPackageResources /*,IXposedHookLoadPackage */{
+        IXposedHookInitPackageResources ,IXposedHookLoadPackage {
 
     private static String MODULE_PATH = null;
 
@@ -86,7 +94,9 @@ public class Translator implements IXposedHookZygoteInit,
         apk.ReplaceStrings();
         apk.ReplaceArrays();
         apk.ReplaceDrawables();
+        //apk.ReplaceDimensions();
         apk.ResizeTextEditPopup();
+        apk.CustomModuleActions();
 
     }
 
@@ -98,9 +108,9 @@ public class Translator implements IXposedHookZygoteInit,
             apk = new BrowserAPK(resparam, MODULE_PATH);
         } else if (resparam.packageName.equals("com.android.calendar")) {
             apk = new CalendarAPK(resparam, MODULE_PATH);
-        } else if (resparam.packageName.equals("com.miui.cloudappbackup")) {
+        } else /*if (resparam.packageName.equals("com.miui.cloudappbackup")) {
             apk = new CloudAppBackupAPK(resparam, MODULE_PATH);
-        } else if (resparam.packageName.equals("com.android.contacts")) {
+        } else */if (resparam.packageName.equals("com.android.contacts")) {
             apk = new ContactsAPK(resparam, MODULE_PATH);
         } else if (resparam.packageName.equals("com.android.providers.downloads")) {
             apk = new DownloadProviderAPK(resparam, MODULE_PATH);
@@ -108,9 +118,9 @@ public class Translator implements IXposedHookZygoteInit,
             apk = new CameraAPK(resparam, MODULE_PATH);
         } else if (resparam.packageName.equals("com.miui.gallery")) {
             apk = new MiuiGalleryPAK(resparam, MODULE_PATH);
-        } else if (resparam.packageName.equals("com.miui.home")) {
+        } else /*if (resparam.packageName.equals("com.miui.home")) {
             apk = new MiuiHomeAPK(resparam, MODULE_PATH);
-        } else if (resparam.packageName.equals("com.android.mms")) {
+        } else*/ if (resparam.packageName.equals("com.android.mms")) {
             apk = new MmsAPK(resparam, MODULE_PATH);
         } else if (resparam.packageName.equals("com.android.systemui")) {
             apk = new MiuiSystemUIAPK(resparam, MODULE_PATH);
@@ -138,33 +148,43 @@ public class Translator implements IXposedHookZygoteInit,
             apk = new NotesAPK(resparam, MODULE_PATH);
         } else if (resparam.packageName.equals("com.android.printspooler")) {
             apk = new PrintSpoolerAPK(resparam, MODULE_PATH);
+        } else if (resparam.packageName.equals("com.xiaomi.account")) {
+            apk = new AccountAPK(resparam, MODULE_PATH);
         } else
             apk=new SampleAPK(resparam, MODULE_PATH);
 
         return apk;
     }
 
- /*   @Override
+
+    @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam loadPackageParam) throws Throwable {
-        if (loadPackageParam.equals("com.android.phone")){
-            XModuleResources modRes=XModuleResources.createInstance(MODULE_PATH, null);
-            try {
-                XposedHelpers.findAndHookMethod(
-                final Class<?> AndroidPhoneClass = XposedHelpers.findClass("com.android.phone.",loadPackageParam.classLoader);
-
-                XposedBridge.hookAllConstructors(AndroidPhoneClass, new XC_MethodHook() {
-                    @Override
-                    protected void afterHookedMethod(MethodHookParam param)
-                            throws Throwable {
-
-                    }
-                });
-
-                XposedBridge.log("!!!Handle Load package com.android.phone");
-
-            } catch (XposedHelpers.ClassNotFoundError e) {
-                XposedBridge.log("Can't hooking class AndroidPhoneClass");
-            }
+        //Remove 3 annoyed messages from set root dialog
+        if(loadPackageParam.packageName.equals("com.miui.securitycenter")) {
+                  try{
+                      XposedHelpers.findAndHookMethod("com.miui.permcenter.root.RootApplyActivity", loadPackageParam.classLoader,"onCreate",Bundle.class,
+                               new XC_MethodHook() {
+                                   @Override
+                                   protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                                       Activity ViewForm = (Activity) param.thisObject;
+                                       Button ButtonOk=(Button)ViewForm.findViewById(Integer.valueOf(0x7f0a00d6));
+                                       if (ButtonOk != null) {
+                                           try {
+                                               XposedBridge.log("DV_Translate hack Root Apply Button");
+                                               for (int i = 0; i <= 3; i++) {
+                                                   ButtonOk.setEnabled(true);
+                                                   ButtonOk.callOnClick();
+                                               }
+                                           } catch (Throwable t) {
+                                               XposedBridge.log("DV_Translate Error in find accept Button");
+                                           }
+                                       }
+                                   }
+                                   });
+                  } catch (XposedHelpers.ClassNotFoundError e) {
+                      XposedBridge.log("DV_Translate change RootApplyActivity error");
+                  }
         }
-    }*/
+
+    }
 }

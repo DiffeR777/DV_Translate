@@ -11,7 +11,8 @@
             android:value="true" />
         <meta-data
             android:name="xposeddescription"
-            android:value="DV_Translate replace strings and string-arrays from files for any application." />
+            android:value="Модуль для перевода интерфейса MIUI v6 \n
+Module translate MIUI v6 interface. It replace resources from files for any application." />
         <meta-data
             android:name="xposedminversion"
             android:value="30" />

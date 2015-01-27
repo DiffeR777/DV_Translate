@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="updated_contacts">
+        <item quantity="other">Обновлено %s контактов</item>
+        <item quantity="one">Обновлен %s контакт</item>
+        <item quantity="two">Обновлено %s контакта</item>
+        <item quantity="few">Обновлено %s контакта</item>
+    </plurals>
+</resources>

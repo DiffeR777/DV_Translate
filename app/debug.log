@@ -1,3 +1,11 @@
 [1205/050515:ERROR:renderer_main.cc(218)] Running without renderer sandbox
 [1205/050515:ERROR:renderer_main.cc(218)] Running without renderer sandbox
 [1205/050515:ERROR:renderer_main.cc(218)] Running without renderer sandbox
+[1218/072432:INFO:CONSOLE(835)] "检查设备连接状态:", source: http://miassist.app.xiaomi.com/views/v3/dist/js/base.js (835)
+[1218/072432:INFO:CONSOLE(1246)] "检查已经下载应用", source: http://miassist.app.xiaomi.com/views/v3/dist/js/base.js (1246)
+[1218/072433:INFO:CONSOLE(805)] "检查App下载状态", source: http://miassist.app.xiaomi.com/views/v3/dist/js/base.js (805)
+[1218/072433:INFO:CONSOLE(0)] "Uncaught SyntaxError: Unexpected end of input", source: http://miassist.app.xiaomi.com/v3/ (0)
+[1218/072518:INFO:CONSOLE(835)] "检查设备连接状态:", source: http://miassist.app.xiaomi.com/views/v3/dist/js/base.js (835)
+[1218/080521:INFO:CONSOLE(835)] "检查设备连接状态:", source: http://miassist.app.xiaomi.com/views/v3/dist/js/base.js (835)
+[1218/080521:INFO:CONSOLE(1246)] "检查已经下载应用", source: http://miassist.app.xiaomi.com/views/v3/dist/js/base.js (1246)
+[1218/080522:INFO:CONSOLE(805)] "检查App下载状态", source: http://miassist.app.xiaomi.com/views/v3/dist/js/base.js (805)

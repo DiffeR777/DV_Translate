@@ -63,6 +63,14 @@ public class SampleAPK {
         }
     }
 
+    public void TryReplaceDimention(String dimentionname,int resourceid) {
+        try {
+            this.packageres.setReplacement(this.packagename, "dimen", dimentionname, modRes.fwd(resourceid));
+        } catch (Throwable localThrowable1) {
+            XposedBridge.log("exception then try replace dimen: "+dimentionname);
+        }
+    }
+
     public boolean PluralsDisabled(){
         if (new File( appFolder + "/pluralsdisable.xml").exists()){
             XposedBridge.log("Plurals replace disabled for " + packagename);
@@ -253,65 +261,11 @@ public class SampleAPK {
         packageres.hookLayout("android.miui", "layout", "text_edit_action_popup_text", new EditPopupHook());
     }
 
-    public enum Dimension_ {
-        px ("px"),
-        dip("dip"),
-        sp("sp"),
-        pt("pt"),
-        in("in"),
-        mm("mm");
+    public void CustomModuleActions(){
 
-        private final String name;
-
-        private Dimension_(String s) {
-            name = s;
-        }
-
-        public boolean equalsStr(String str2){
-            return (str2 != null) && name.equals(str2);
-        }
-
-        public String toString(){
-            return name;
-        }
     }
 
-/*
-    public void ReplaceDimensions() throws ParserConfigurationException, IOException, SAXException {
-
-        */
-/*public enum Dimension {
-            //Pixels - Corresponds to actual pixels on the screen.
-            px(TypedValue.COMPLEX_UNIT_PX),
-
-            // dp или dip Density-independent Pixels - An abstract unit that is based on the physical density of the screen
-            dip(TypedValue.COMPLEX_UNIT_DIP),
-
-            //Scale-independent Pixels
-            sp(TypedValue.COMPLEX_UNIT_SP),
-
-            //Points - 1/72 of an inch based on the physical size of the screen.
-            pt(TypedValue.COMPLEX_UNIT_PT),
-
-            //Inches - Based on the physical size of the screen.
-            in(TypedValue.COMPLEX_UNIT_IN),
-
-            //Millimeters - Based on the physical size of the screen.
-            mm(TypedValue.COMPLEX_UNIT_MM);
-
-            private final int unitType;
-
-            Dimension(int unitType) {
-                this.unitType = unitType;
-            }
-
-            public XResources.DimensionReplacement valueOf(float value) {
-                return new XResources.DimensionReplacement(value, unitType);
-            };
-          *//*
-
-
-
+    /*public void ReplaceDimensions() throws ParserConfigurationException, IOException, SAXException {
 
         File dimensFile = new File(appFolder + "/dimens.xml");
 
@@ -329,8 +283,8 @@ public class SampleAPK {
                 Node b = a.item(i);
 
 
-                mFontSizePx = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, mFontSize,
-                        packageres.getDisplayMetrics());
+                //mFontSizePx = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, mFontSize,
+                //        packageres.getDisplayMetrics());
 
                 try { packageres.setReplacement(
                         packagename,
@@ -343,8 +297,7 @@ public class SampleAPK {
             }
             XposedBridge.log("Dimentions replaced for " + packagename);
         }
-    }
-*/
+    }*/
 }
 
 class EditPopupHook extends XC_LayoutInflated {

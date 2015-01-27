@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <plurals name="status_bar_accessibility_recent_apps">
-        <item quantity="other">Недавних приложений: %d</item>
+        <item quantity="other">%d недавних приложений</item>
         <item quantity="one">Одно недавнее приложение</item>
+        <item quantity="two">%d недавних приложения</item>
+        <item quantity="few">%d недавних приложения</item>
     </plurals>
 </resources>

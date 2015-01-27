@@ -18,4 +18,9 @@ public class ClockAPK extends SampleAPK {
             LogPluralsDone();
         }
     }
+
+    @Override
+    public void CustomModuleActions(){
+        this.TryReplaceDimention("tab_text_size", R.dimen.tab_text_size);
+    }
 }
