@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <plurals name="confirm_delete_has_cloud_image">
-        <item quantity="other">Удалить %s фото из &amp;lt;b>Mi Cloud&amp;lt;/b>?</item>
-        <item quantity="one">Удалить %s фото из &amp;lt;b>Mi Cloud&amp;lt;/b>?</item>
+        <item quantity="other">Удалить %s изображений из &amp;lt;b>Mi Cloud&amp;lt;/b>?</item>
+        <item quantity="one">Удалить %s изображение из &amp;lt;b>Mi Cloud&amp;lt;/b>?</item>
+        <item quantity="two">Удалить %s изображения из &amp;lt;b>Mi Cloud&amp;lt;/b>?</item>
+        <item quantity="few">Удалить %s изображения из &amp;lt;b>Mi Cloud&amp;lt;/b>?</item>
     </plurals>
     <plurals name="confirm_delete_has_local_image">
-        <item quantity="other">Удалить %s фото?</item>
-        <item quantity="one">Удалить %s фото?</item>
+        <item quantity="other">Удалить %s изображений?</item>
+        <item quantity="one">Удалить %s изображение?</item>
+        <item quantity="two">Удалить %s изображения?</item>
+        <item quantity="few">Удалить %s изображения?</item>
     </plurals>
     <plurals name="confirm_delete_has_cloud_video">
         <item quantity="other">Удалить %s видео из &amp;lt;b>Mi Cloud&amp;lt;/b>?</item>
@@ -17,31 +21,61 @@
         <item quantity="one">Удалить %s видео?</item>
     </plurals>
     <plurals name="confirm_delete_has_cloud_local_image">
-        <item quantity="other">Удалить %s фото из &amp;lt;b>памяти телефона и Mi Cloud&amp;lt;/b>?</item>
-        <item quantity="one">Удалить %s фото из &amp;lt;b>памяти телефона и Mi Cloud&amp;lt;/b>?</item>
+        <item quantity="other">Удалить %s изображений из &amp;lt;b>памяти телефона и Mi Cloud&amp;lt;/b>?</item>
+        <item quantity="one">Удалить %s изображение из &amp;lt;b>памяти телефона и Mi Cloud&amp;lt;/b>?</item>
+        <item quantity="two">Удалить %s изображения из &amp;lt;b>памяти телефона и Mi Cloud&amp;lt;/b>?</item>
+        <item quantity="few">Удалить %s изображения из &amp;lt;b>памяти телефона и Mi Cloud&amp;lt;/b>?</item>
     </plurals>
     <plurals name="confirm_delete_has_cloud_local_video">
         <item quantity="other">Удалить %s видео из &amp;lt;b>памяти телефона и Mi Cloud&amp;lt;/b>?</item>
         <item quantity="one">Удалить %s видео из &amp;lt;b>памяти телефона и Mi Cloud&amp;lt;/b>?</item>
     </plurals>
     <plurals name="number_of_items_selected">
-        <item quantity="other">Выбрано: %1$d</item>
-        <item quantity="zero">Выбрано: %1$d</item>
-        <item quantity="one">Выбран: %1$d</item>
+        <item quantity="other">Выбрано: %1$d шт.</item>
+        <item quantity="zero">Выбрано: %1$d шт.</item>
+        <item quantity="one">Выбрано: %1$d шт.</item>
     </plurals>
     <plurals name="number_of_pictures">
         <item quantity="other">%1$d</item>
         <item quantity="zero">%1$d</item>
         <item quantity="one">%1$d</item>
     </plurals>
+    <plurals name="how_many_pics">
+        <item quantity="other">%d изображений</item>
+        <item quantity="one">%d изображение</item>
+        <item quantity="two">%d изображения</item>
+        <item quantity="few">%d изображения</item>
+    </plurals>
+    <plurals name="how_many_videos">
+        <item quantity="other">%d видео</item>
+        <item quantity="one">%d видео</item>
+    </plurals>
+    <plurals name="how_many_sub_folders">
+        <item quantity="other">%d папок </item>
+        <item quantity="one">%d папка</item>
+        <item quantity="two">%d папки</item>
+        <item quantity="few">%d папки</item>
+    </plurals>
+    <plurals name="message_no_delete_access_with_count">
+        <item quantity="other">Нет доступа к %d файлам </item>
+        <item quantity="one">Нет доступа к файлу</item>
+    </plurals>
+    <plurals name="pick_with_limited_upper_bound_title">
+        <item quantity="other">Вы можете выбрать до %d шт.</item>
+        <item quantity="one">Вы можете выбрать %d шт.</item>
+    </plurals>
     <plurals name="number_of_images">
-        <item quantity="other">Изображений: %1$d</item>
-        <item quantity="zero">Изображений: %1$d</item>
-        <item quantity="one">Изображение: %1$d</item>
+        <item quantity="other">%1$d изображений</item>
+        <item quantity="zero">%1$d изображений</item>
+        <item quantity="one">%1$d изображение</item>
+        <item quantity="two">%1$d изображения</item>
+        <item quantity="few">%1$d изображения</item>
     </plurals>
     <plurals name="number_of_items">
-        <item quantity="other">Файлов: %1$d</item>
-        <item quantity="zero">Файлов: %1$d</item>
-        <item quantity="one">Файл: %1$d</item>
+        <item quantity="other">%1$d файлов</item>
+        <item quantity="zero">%1$d файлов</item>
+        <item quantity="one">%1$d файл</item>
+        <item quantity="two">%1$d файла</item>
+        <item quantity="few">%1$d файла</item>
     </plurals>
 </resources>
