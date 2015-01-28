@@ -150,6 +150,8 @@ public class Translator implements IXposedHookZygoteInit,
             apk = new PrintSpoolerAPK(resparam, MODULE_PATH);
         } else if (resparam.packageName.equals("com.xiaomi.account")) {
             apk = new AccountAPK(resparam, MODULE_PATH);
+        } else if (resparam.packageName.equals("com.android.thememanager")) {
+            apk = new ThemeManagerAPK(resparam, MODULE_PATH);
         } else
             apk=new SampleAPK(resparam, MODULE_PATH);
 
