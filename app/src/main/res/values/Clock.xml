@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <plurals name="timer_message_with_minutes">
+        <item quantity="other">%1$d мин.</item>
+        <item quantity="one">%1$d мин.</item>
+    </plurals>
+    <plurals name="timer_message_with_seconds">
+        <item quantity="other">%1$d сек.</item>
+        <item quantity="one">%1$d сек.</item>
+    </plurals>
     <plurals name="timer_item_duration_display_seconds">
         <item quantity="other">%1$d сек.</item>
         <item quantity="one">1 сек.</item>
@@ -7,6 +15,10 @@
     <plurals name="timer_item_duration_display_minutes">
         <item quantity="other">%1$d мин.</item>
         <item quantity="one">1 мин.</item>
+    </plurals>
+    <plurals name="snooze_message">
+        <item quantity="other">Отложить на %d мин.</item>
+        <item quantity="one">Отложить на %d мин.</item>
     </plurals>
     <dimen name="tab_text_size">12.0sp</dimen>
 </resources>

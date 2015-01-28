@@ -15,6 +15,9 @@ public class ClockAPK extends SampleAPK {
         if (!this.PluralsDisabled()) {
             this.TryReplacePlural("timer_item_duration_display_seconds", R.plurals.timer_item_duration_display_seconds);
             this.TryReplacePlural("timer_item_duration_display_minutes", R.plurals.timer_item_duration_display_minutes);
+            this.TryReplacePlural("timer_message_with_minutes", R.plurals.timer_message_with_minutes);
+            this.TryReplacePlural("timer_message_with_seconds", R.plurals.timer_message_with_seconds);
+            this.TryReplacePlural("snooze_message", R.plurals.snooze_message);
             LogPluralsDone();
         }
     }
